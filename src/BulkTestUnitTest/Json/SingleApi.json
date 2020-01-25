@@ -1,0 +1,57 @@
+﻿{
+  "/api/v1/Categories/GetPagedCategories": {
+    "get": {
+      "tags": [
+        "Categories"
+      ],
+      "operationId": "GetPagedCategories",
+      "consumes": [],
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "PageIndex",
+          "in": "query",
+          "required": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "PageSize",
+          "in": "query",
+          "required": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        {
+          "name": "IsHasOrderBy",
+          "in": "query",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "OrderBy",
+          "in": "query",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "App-Level",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Success",
+          "schema": {
+            "$ref": "#/definitions/CategoryDto"
+          }
+        }
+      }
+    }
+  }
+
+}

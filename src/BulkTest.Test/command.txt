@@ -1,0 +1,1177 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "ParcelStorage Command API",
+    "description": "A sample application with current Framework, Swagger, Swashbuckle, and API versioning.",
+    "termsOfService": "Shareware",
+    "contact": {
+      "name": "Amir Heydari",
+      "email": "amir.heydari@gmail.com"
+    },
+    "license": {
+      "name": "Titec",
+      "url": "https://titec.ir/"
+    }
+  },
+  "paths": {
+    "/api/v1/Parcel/GetPreCodeList": {
+      "post": {
+        "tags": [
+          "Parcel"
+        ],
+        "summary": "this method inserts a new ParcelPreCode.",
+        "description": "<returns>returns the new ParcelPreCode</returns>",
+        "operationId": "GetPreCodeList",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "description": "ParcelPreCodeListModel to insert new list",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ParcelPreCodeListModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "new ParcelPreCode has created"
+          },
+          "400": {
+            "description": "new ParcelPreCode has invalid business validation errors",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Oops! Can't create your request"
+          },
+          "603": {
+            "description": "new ParcelPreCode has missing/invalid values"
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ChangeIsPrintedModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int64",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer"
+        },
+        "isPrinted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ProblemDetails": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "ChangeIsSentToGLModel": {
+      "type": "object",
+      "properties": {
+        "isSentToRaahkaranGL": {
+          "type": "boolean"
+        },
+        "isSentToNosaGL": {
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int64",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer"
+        }
+      }
+    },
+    "ParcelPreCodeModel": {
+      "description": "This object can be used to insert and update Parcel",
+      "required": [
+        "providerCode",
+        "contentDescription",
+        "dateAndTime",
+        "dimension",
+        "receiver",
+        "sender"
+      ],
+      "type": "object",
+      "properties": {
+        "serviceZoneId": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceZoneId",
+          "type": "integer",
+          "example": ""
+        },
+        "serviceTypeId": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceTypeId",
+          "type": "integer",
+          "example": ""
+        },
+        "parcelTypeId": {
+          "format": "int32",
+          "description": "Gets or sets the ParcelTypeId",
+          "type": "integer",
+          "example": ""
+        },
+        "providerBranchId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderBranchId",
+          "type": "integer",
+          "example": ""
+        },
+        "providerCode": {
+          "description": "Gets or sets the ProviderCode",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "postage": {
+          "format": "int64",
+          "description": "Gets or sets the Postage",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer",
+          "example": ""
+        },
+        "weight": {
+          "format": "float",
+          "description": "Gets or sets the Weight",
+          "minimum": 0,
+          "type": "number",
+          "example": ""
+        },
+        "insuredValue": {
+          "format": "int64",
+          "description": "Gets or sets the InsuredValue",
+          "minimum": 0,
+          "type": "integer",
+          "example": ""
+        },
+        "contentDescription": {
+          "description": "Gets or sets the ContentDescription",
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "dateAndTime": {
+          "format": "date-time",
+          "description": "Gets or sets the DateAndTime",
+          "type": "string",
+          "example": ""
+        },
+        "dimension": {
+          "$ref": "#/definitions/DimensionModel",
+          "description": "Gets or sets the Dimension",
+          "example": ""
+        },
+        "receiver": {
+          "$ref": "#/definitions/ParcelPreCodeReceiverModel"
+        },
+        "sender": {
+          "$ref": "#/definitions/ParcelPreCodeSenderModel"
+        }
+      }
+    },
+    "DimensionModel": {
+      "description": "This object can be used to insert and update Parcel",
+      "type": "object",
+      "properties": {
+        "length": {
+          "format": "int32",
+          "description": "Gets or sets the Length",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer",
+          "example": ""
+        },
+        "width": {
+          "format": "int32",
+          "description": "Gets or sets the Width",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer",
+          "example": ""
+        },
+        "height": {
+          "format": "int32",
+          "description": "Gets or sets the Height",
+          "minimum": 0,
+          "type": "integer",
+          "example": ""
+        }
+      }
+    },
+    "ParcelPreCodeReceiverModel": {
+      "description": "This object can be used to insert and update ParcelReceiver",
+      "required": [
+        "fullName",
+        "address"
+      ],
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "format": "int32",
+          "description": "Gets or sets the CityId",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer",
+          "example": ""
+        },
+        "nationalCode": {
+          "description": "Gets or sets the NationalCode",
+          "type": "string",
+          "example": ""
+        },
+        "nationalCompanyCode": {
+          "description": "Gets or sets the NationalCompanyCode",
+          "type": "string",
+          "example": ""
+        },
+        "fullName": {
+          "description": "Gets or sets the FullName",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "companyName": {
+          "description": "Gets or sets the CompanyName",
+          "type": "string",
+          "example": ""
+        },
+        "cellNumber": {
+          "description": "Gets or sets the CellNumber",
+          "type": "string",
+          "example": ""
+        },
+        "address": {
+          "description": "Gets or sets the Address",
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "postalCode": {
+          "description": "Gets or sets the PostalCode",
+          "type": "string",
+          "example": ""
+        },
+        "isLegal": {
+          "description": "Gets or sets the IsLegal",
+          "type": "boolean",
+          "example": ""
+        }
+      }
+    },
+    "ParcelPreCodeSenderModel": {
+      "description": "This object can be used to insert and update ParcelSender",
+      "required": [
+        "fullName",
+        "address"
+      ],
+      "type": "object",
+      "properties": {
+        "cityId": {
+          "format": "int32",
+          "description": "Gets or sets the CityId",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "integer",
+          "example": ""
+        },
+        "nationalCode": {
+          "description": "Gets or sets the NationalCode",
+          "type": "string",
+          "example": ""
+        },
+        "nationalCompanyCode": {
+          "description": "Gets or sets the NationalCompanyCode",
+          "type": "string",
+          "example": ""
+        },
+        "fullName": {
+          "description": "Gets or sets the FullName",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "companyName": {
+          "description": "Gets or sets the CompanyName",
+          "type": "string",
+          "example": ""
+        },
+        "cellNumber": {
+          "description": "Gets or sets the CellNumber",
+          "type": "string",
+          "example": ""
+        },
+        "address": {
+          "description": "Gets or sets the Address",
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "postalCode": {
+          "description": "Gets or sets the PostalCode",
+          "type": "string",
+          "example": ""
+        },
+        "isLegal": {
+          "description": "Gets or sets the IsLegal",
+          "type": "boolean",
+          "example": ""
+        }
+      }
+    },
+    "ParcelPreCodeListModel": {
+      "required": [
+        "list"
+      ],
+      "type": "object",
+      "properties": {
+        "list": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ParcelPreCodeModel"
+          }
+        }
+      }
+    },
+    "AcceptCodeModel": {
+      "description": "This object can be used to insert and update ParcelStatus",
+      "required": [
+        "preCode"
+      ],
+      "type": "object",
+      "properties": {
+        "preCode": {
+          "format": "uuid",
+          "description": "Gets or sets the Code",
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "providerBranchId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderBranchId",
+          "type": "integer",
+          "example": ""
+        },
+        "dateAndTime": {
+          "format": "date-time",
+          "description": "Gets or sets the DateAndTime",
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "AcceptCodeListModel": {
+      "required": [
+        "list"
+      ],
+      "type": "object",
+      "properties": {
+        "list": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AcceptCodeModel"
+          }
+        }
+      }
+    },
+    "UnAcceptCodeModel": {
+      "description": "This object can be used to insert and update ParcelStatus",
+      "required": [
+        "preCode"
+      ],
+      "type": "object",
+      "properties": {
+        "preCode": {
+          "format": "uuid",
+          "description": "Gets or sets the Code",
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "providerBranchId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderBranchId",
+          "type": "integer",
+          "example": ""
+        },
+        "dateAndTime": {
+          "format": "date-time",
+          "description": "Gets or sets the DateAndTime",
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "UnAcceptCodeListModel": {
+      "required": [
+        "list"
+      ],
+      "type": "object",
+      "properties": {
+        "list": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UnAcceptCodeModel"
+          }
+        }
+      }
+    },
+    "ParcelStatusModel": {
+      "description": "This object can be used to insert and update ParcelStatus",
+      "required": [
+        "code"
+      ],
+      "type": "object",
+      "properties": {
+        "code": {
+          "format": "uuid",
+          "description": "Gets or sets the Code",
+          "minLength": 1,
+          "type": "string",
+          "example": ""
+        },
+        "providerBranchId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderBranchId",
+          "type": "integer",
+          "example": ""
+        },
+        "providerStatusId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderStatusId",
+          "type": "integer",
+          "example": ""
+        },
+        "dateAndTime": {
+          "format": "date-time",
+          "description": "Gets or sets the DateAndTime",
+          "type": "string",
+          "example": ""
+        }
+      }
+    },
+    "ParcelStatusListModel": {
+      "required": [
+        "list"
+      ],
+      "type": "object",
+      "properties": {
+        "list": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ParcelStatusModel"
+          }
+        }
+      }
+    },
+    "ProviderFinancialInfoInsertModel": {
+      "required": [
+        "providerId",
+        "glCodeCommercialReceivable",
+        "slCodeCommercialReceivable",
+        "dlCodeCommercialReceivable",
+        "dlCodeSecondCommercialReceivable",
+        "glCodeUso",
+        "sharingRateUso",
+        "slCodeUso",
+        "dlCodeFirstUso",
+        "dlCodeSecondUso",
+        "glCodeOrganization",
+        "sharingRateOrganization",
+        "slCodeOrganization",
+        "dlCodeFirstOrganization",
+        "dlCodeSecondOrganization",
+        "glCodeGovernment",
+        "sharingRateGovernment",
+        "slCodeGovernment",
+        "dlCodeFirstGovernment",
+        "dlCodeSecondGovernment",
+        "glCodeIncome",
+        "sharingRateIncome",
+        "slCodeIncome",
+        "dlCodeFirstIncome",
+        "dlCodeSecondIncome",
+        "sharingRateTaxPerIncome",
+        "sharingRateComplicationsPerIncome",
+        "sharingRateTaxPerUso",
+        "sharingRateComplicationsPerUso",
+        "sharingRateTaxPerGovernment",
+        "sharingRateComplicationsPerGovernment",
+        "sharingRateTaxPerOrganization",
+        "sharingRateComplicationsPerOrganization"
+      ],
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "format": "int32",
+          "description": "Gets or sets the ProviderId",
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "minLength": 1,
+          "type": "integer"
+        },
+        "provider": {
+          "description": "Gets or sets the Provider",
+          "type": "string"
+        },
+        "glCodeCommercialReceivable": {
+          "description": "Gets or sets the GLCodeCommercialReceivable",
+          "minLength": 1,
+          "type": "string"
+        },
+        "isCreditCommercialReceivable": {
+          "description": "Gets or sets the IsCreditCommercialReceivable",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sharingRateCommercialReceivable": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateCommercialReceivable",
+          "type": "number",
+          "readOnly": true
+        },
+        "displayOrderCommercialReceivable": {
+          "format": "int32",
+          "description": "Gets or sets the DisplayOrderCommercialReceivable",
+          "type": "integer",
+          "readOnly": true
+        },
+        "slCodeCommercialReceivable": {
+          "description": "Gets or sets the SLCodeCommercialReceivable",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeCommercialReceivable": {
+          "description": "Gets or sets the DLCodeCommercialReceivable",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeSecondCommercialReceivable": {
+          "description": "Gets or sets the DLCodeSecondCommercialReceivable",
+          "minLength": 1,
+          "type": "string"
+        },
+        "serviceCodeCommercialReceivable": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceCodeCommercialReceivable",
+          "type": "integer",
+          "readOnly": true
+        },
+        "documentAccountIdUso": {
+          "format": "int32",
+          "description": "Gets or sets the DocumentAccountIdUso",
+          "type": "integer"
+        },
+        "glCodeUso": {
+          "description": "Gets or sets the GLCodeUso",
+          "minLength": 1,
+          "type": "string"
+        },
+        "isCreditUso": {
+          "description": "Gets or sets the IsCreditUso",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sharingRateUso": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateUso",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "displayOrderUso": {
+          "format": "int32",
+          "description": "Gets or sets the DisplayOrderUso",
+          "type": "integer",
+          "readOnly": true
+        },
+        "slCodeUso": {
+          "description": "Gets or sets the SLCodeUso",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeFirstUso": {
+          "description": "Gets or sets the DLCodeFirstUso",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeSecondUso": {
+          "description": "Gets or sets the DLCodeSecondUso",
+          "minLength": 1,
+          "type": "string"
+        },
+        "serviceCodeUso": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceCodeUso",
+          "type": "integer",
+          "readOnly": true
+        },
+        "glCodeOrganization": {
+          "description": "Gets or sets the GLCodeOrganization",
+          "minLength": 1,
+          "type": "string"
+        },
+        "isCreditOrganization": {
+          "description": "Gets or sets the IsCreditOrganization",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sharingRateOrganization": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateOrganization",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "displayOrderOrganization": {
+          "format": "int32",
+          "description": "Gets or sets the DisplayOrderOrganization",
+          "type": "integer",
+          "readOnly": true
+        },
+        "slCodeOrganization": {
+          "description": "Gets or sets the SLCodeOrganization",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeFirstOrganization": {
+          "description": "Gets or sets the DLCodeFirstOrganization",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeSecondOrganization": {
+          "description": "Gets or sets the DLCodeSecondOrganization",
+          "minLength": 1,
+          "type": "string"
+        },
+        "serviceCodeOrganization": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceCodeOrganization",
+          "type": "integer",
+          "readOnly": true
+        },
+        "glCodeGovernment": {
+          "description": "Gets or sets the GLCodeGovernment",
+          "minLength": 1,
+          "type": "string"
+        },
+        "isCreditGovernment": {
+          "description": "Gets or sets the IsCreditGovernment",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sharingRateGovernment": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateGovernment",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "displayOrderGovernment": {
+          "format": "int32",
+          "description": "Gets or sets the DisplayOrderGovernment",
+          "type": "integer",
+          "readOnly": true
+        },
+        "slCodeGovernment": {
+          "description": "Gets or sets the SLCodeGovernment",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeFirstGovernment": {
+          "description": "Gets or sets the DLCodeFirstGovernment",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeSecondGovernment": {
+          "description": "Gets or sets the DLCodeSecondGovernment",
+          "minLength": 1,
+          "type": "string"
+        },
+        "serviceCodeGovernment": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceCodeGovernment",
+          "type": "integer",
+          "readOnly": true
+        },
+        "glCodeIncome": {
+          "description": "Gets or sets the GLCodeIncome",
+          "minLength": 1,
+          "type": "string"
+        },
+        "isCreditIncome": {
+          "description": "Gets or sets the IsCreditIncome",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "sharingRateIncome": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateIncome",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "displayOrderIncome": {
+          "format": "int32",
+          "description": "Gets or sets the DisplayOrderIncome",
+          "type": "integer",
+          "readOnly": true
+        },
+        "slCodeIncome": {
+          "description": "Gets or sets the SLCodeIncome",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeFirstIncome": {
+          "description": "Gets or sets the DLCodeFirstIncome",
+          "minLength": 1,
+          "type": "string"
+        },
+        "dlCodeSecondIncome": {
+          "description": "Gets or sets the DLCodeSecondIncome",
+          "minLength": 1,
+          "type": "string"
+        },
+        "serviceCodeIncome": {
+          "format": "int32",
+          "description": "Gets or sets the ServiceCodeIncome",
+          "type": "integer",
+          "readOnly": true
+        },
+        "sharingRateTaxPerIncome": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateTaxPerIncome",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateComplicationsPerIncome": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateComplicationsPerIncome",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateTaxPerUso": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateTaxPerUso",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateComplicationsPerUso": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateComplicationsPerUso",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateTaxPerGovernment": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateTaxPerGovernment",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateComplicationsPerGovernment": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateComplicationsPerGovernment",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateTaxPerOrganization": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateTaxPerOrganization",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "sharingRateComplicationsPerOrganization": {
+          "format": "float",
+          "description": "Gets or sets the SharingRateComplicationsPerOrganization",
+          "maximum": 12,
+          "minLength": 1,
+          "type": "number"
+        },
+        "dlCodeTaxPerIncome": {
+          "description": "Gets or sets the DLCodeTaxPerIncome",
+          "type": "string"
+        },
+        "dlCodeComplicationsPerIncome": {
+          "description": "Gets or sets the DLCodeComplicationsPerIncome",
+          "type": "string"
+        },
+        "dlCodeTaxPerUso": {
+          "description": "Gets or sets the DLCodeTaxPerUso",
+          "type": "string"
+        },
+        "dlCodeComplicationsPerUso": {
+          "description": "Gets or sets the DLCodeComplicationsPerUso",
+          "type": "string"
+        },
+        "dlCodeTaxPerGovernment": {
+          "description": "Gets or sets the DLCodeTaxPerGovernment",
+          "type": "string"
+        },
+        "dlCodeComplicationsPerGovernment": {
+          "description": "Gets or sets the DLCodeComplicationsPerGovernment",
+          "type": "string"
+        },
+        "dlCodeTaxPerOrganization": {
+          "description": "Gets or sets the DLCodeTaxPerOrganization",
+          "type": "string"
+        },
+        "dlCodeComplicationsPerOrganization": {
+          "description": "Gets or sets the DLCodeComplicationsPerOrganization",
+          "type": "string"
+        },
+        "fromValidDate": {
+          "format": "date-time",
+          "description": "Gets or sets the FromValidDate",
+          "type": "string"
+        },
+        "toValidDate": {
+          "format": "date-time",
+          "description": "Gets or sets the ToValidDate",
+          "type": "string"
+        },
+        "isActive": {
+          "description": "Gets or sets the IsActive",
+          "type": "boolean",
+          "readOnly": true
+        }
+      }
+    },
+    "ChangeDefaultPasswordModel": {
+      "required": [
+        "verificationCode",
+        "userName",
+        "oldPassword",
+        "newPassword"
+      ],
+      "type": "object",
+      "properties": {
+        "verificationCode": {
+          "maxLength": 5,
+          "minLength": 1,
+          "pattern": "\\d*",
+          "type": "string"
+        },
+        "userName": {
+          "maxLength": 11,
+          "minLength": 11,
+          "type": "string"
+        },
+        "oldPassword": {
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        },
+        "newPassword": {
+          "maxLength": 20,
+          "minLength": 1,
+          "pattern": "(?=.*\\d)",
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "ResetPasswordModel": {
+      "required": [
+        "verificationCode",
+        "newPassword"
+      ],
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "verificationCode": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "newPassword": {
+          "maxLength": 20,
+          "minLength": 1,
+          "pattern": "(?=.*\\d)",
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "ChangeCurrentUserPasswordModel": {
+      "required": [
+        "oldPassword",
+        "newPassword"
+      ],
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "string"
+        },
+        "newPassword": {
+          "maxLength": 20,
+          "minLength": 1,
+          "pattern": "(?=.*\\d)",
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateUserAccountModel": {
+      "required": [
+        "name",
+        "userName",
+        "roleIds",
+        "stateProvinceIds"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 50,
+          "minLength": 1,
+          "pattern": "^[؀-ۿ ]+$",
+          "type": "string"
+        },
+        "userName": {
+          "maxLength": 11,
+          "minLength": 11,
+          "pattern": "^[0][9]\\d{9}$",
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "readOnly": true
+        },
+        "roleIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "adminComment": {
+          "maxLength": 200,
+          "minLength": 0,
+          "type": "string"
+        },
+        "stateProvinceIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "ChangeCustomerActivationModel": {
+      "type": "object",
+      "properties": {
+        "isActive": {
+          "type": "boolean"
+        },
+        "customerIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "UpdateCustomerAndAssignRoleModel": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "adminComment": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateRoleModel": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ChangeRoleActivationModel": {
+      "type": "object",
+      "properties": {
+        "isActive": {
+          "type": "boolean"
+        },
+        "roleIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "AssignPermissionsToRoleModel": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "permissionIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "CreateCRAUserAccountModel": {
+      "required": [
+        "name",
+        "userName"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 50,
+          "minLength": 1,
+          "pattern": "^[؀-ۿ ]+$",
+          "type": "string"
+        },
+        "userName": {
+          "maxLength": 11,
+          "minLength": 11,
+          "pattern": "^[0][9]\\d{9}$",
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "readOnly": true
+        },
+        "adminComment": {
+          "maxLength": 200,
+          "minLength": 0,
+          "type": "string"
+        },
+        "stateProvinceIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

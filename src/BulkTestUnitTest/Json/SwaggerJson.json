@@ -1,0 +1,2821 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "QuestionSender Mobile Api",
+    "description": "A sample application with current Framework, Swagger, Swashbuckle, and API versioning.",
+    "termsOfService": "Shareware",
+    "contact": {
+      "name": "Amir Heydari",
+      "email": "amir.heydari@gmail.com"
+    },
+    "license": {
+      "name": "Titec",
+      "url": "https://titec.ir/"
+    }
+  },
+  "paths": {
+    "/api/v1/Categories/GetPagedCategories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategories",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetPagedCategoriesByFilter": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategoriesByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetAllCategories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetAllCategories",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetCategory": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetCategory",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetCategoryCount": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetCategoryCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetPagedCategoryQuestions": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategoryQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetPagedCategoryQuestionsByFilter": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategoryQuestionsByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetAllCategoryQuestions": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetAllCategoryQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetCategoryQuestionsCount": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetCategoryQuestionsCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetPagedCategoryChildren": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategoryChildren",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetPagedCategoryChildrenByFilter": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetPagedCategoryChildrenByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetAllCategoryChildren": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetAllCategoryChildren",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/GetCategoryChildrenCount": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "GetCategoryChildrenCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ClientBlock/BlockAndUnblock": {
+      "post": {
+        "tags": [
+          "ClientBlock"
+        ],
+        "operationId": "BlockAndUnblock",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ToggleBlockModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/DefaultQuestions/GetPagedDefaultQuestions": {
+      "get": {
+        "tags": [
+          "DefaultQuestions"
+        ],
+        "operationId": "GetPagedDefaultQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DefaultQuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DefaultQuestions/GetPagedDefaultQuestionsByFilter": {
+      "get": {
+        "tags": [
+          "DefaultQuestions"
+        ],
+        "operationId": "GetPagedDefaultQuestionsByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DefaultQuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DefaultQuestions/GetAllDefaultQuestions": {
+      "get": {
+        "tags": [
+          "DefaultQuestions"
+        ],
+        "operationId": "GetAllDefaultQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DefaultQuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/DefaultQuestions/GetDefaultQuestion": {
+      "get": {
+        "tags": [
+          "DefaultQuestions"
+        ],
+        "operationId": "GetDefaultQuestion",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DefaultQuestionDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/DefaultQuestions/GetDefaultQuestionCount": {
+      "get": {
+        "tags": [
+          "DefaultQuestions"
+        ],
+        "operationId": "GetDefaultQuestionCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestions": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestionsByFilter": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestionsByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetAllQuestions": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetAllQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestion": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestion",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestionsCount": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestionsCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestionReceivers": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestionReceivers",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestionReceiversByFilter": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestionReceiversByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetAllQuestionReceivers": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetAllQuestionReceivers",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestionReceiver": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestionReceiver",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ClientDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestionReceiverCount": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestionReceiverCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestionAnswerForSender": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestionAnswerForSender",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionAnswerDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetPagedQuestionAnswerForSenderByFilter": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetPagedQuestionAnswerForSenderByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionAnswerDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetAllQuestionAnswerForSender": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetAllQuestionAnswerForSender",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionAnswerDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestionAnswerForSender": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestionAnswerForSender",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/GetQuestionAnswerForSenderCount": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "GetQuestionAnswerForSenderCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/InsertQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "InsertQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionInsertModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/InsertQuestionForGroup": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "InsertQuestionForGroup",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionInsertForGroupModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/DeleteReceivers": {
+      "delete": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "DeleteReceivers",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiversDeleteModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Questions/DeleteReceiversForClient": {
+      "delete": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "DeleteReceiversForClient",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiversDeleteForClientModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Received/GetPagedReceivedQuestions": {
+      "get": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "GetPagedReceivedQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverDetailDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Received/GetPagedReceivedQuestionsByFilter": {
+      "get": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "GetPagedReceivedQuestionsByFilter",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsHasFilter",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "Filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PageIndex",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "IsHasOrderBy",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverDetailDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Received/GetAllReceivedQuestions": {
+      "get": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "GetAllReceivedQuestions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverDetailDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Received/GetReceivedQuestion": {
+      "get": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "GetReceivedQuestion",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverDetailDto"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Received/GetReceivedQuestionsCount": {
+      "get": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "GetReceivedQuestionsCount",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Received/SetQuestionReceiverSeen": {
+      "post": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "SetQuestionReceiverSeen",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionReceiverSeenModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Received/AnwserQuestionReceiver": {
+      "post": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "AnwserQuestionReceiver",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/QuestionAnswerInsertModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Received/DeleteReceived": {
+      "delete": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "DeleteReceived",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "format": "int64",
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Received/DeleteReceivedFromClient": {
+      "delete": {
+        "tags": [
+          "Received"
+        ],
+        "operationId": "DeleteReceivedFromClient",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/Upload/UploadFile": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "UploadFile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "required": false,
+            "type": "file"
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "200": {
+            "description": "Success"
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/User/ChangePassword": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "ChangePassword",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "changePassword",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ChangeCurrentUserPasswordModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/User/AddUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "AddUser",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/IdpCreateUserAccountModel"
+            }
+          },
+          {
+            "name": "App-Level",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CategoryDto": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "parentQuestionCategoryName": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "QuestionDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "questionCategoryName": {
+          "type": "string"
+        },
+        "createDatePersian": {
+          "type": "string"
+        }
+      }
+    },
+    "ToggleBlockModel": {
+      "required": [
+        "userName"
+      ],
+      "type": "object",
+      "properties": {
+        "userName": {
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "DefaultQuestionDto": {
+      "description": "This object can be used to show model peroperties and relational properties of DefaultQuestion",
+      "required": [
+        "text",
+        "createDate"
+      ],
+      "type": "object",
+      "properties": {
+        "createDatePersian": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ClientDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    },
+    "QuestionAnswerDto": {
+      "description": "This object can be used to show model peroperties and relational properties of QuestionAnswer",
+      "required": [
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "client": {
+          "$ref": "#/definitions/ClientDto"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "questionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "displayWhoIsAnswer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "QuestionReceiverDto": {
+      "description": "This object can be used to show model peroperties and relational properties of QuestionReceiver",
+      "type": "object",
+      "properties": {
+        "status": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "createDatePersian": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "description": "Gets or sets the Id",
+          "type": "integer",
+          "example": ""
+        },
+        "questionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "receiverMobileNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "QuestionInsertModel": {
+      "required": [
+        "categoryId",
+        "text",
+        "receivers"
+      ],
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "format": "int32",
+          "minLength": 1,
+          "type": "integer"
+        },
+        "text": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "receivers": {
+          "minLength": 1,
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "QuestionInsertForGroupModel": {
+      "type": "object",
+      "properties": {
+        "groupId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "QuestionReceiversDeleteModel": {
+      "type": "object",
+      "properties": {
+        "clientIds": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "questionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "deleteOption": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        }
+      }
+    },
+    "QuestionReceiversDeleteForClientModel": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "deleteOption": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        }
+      }
+    },
+    "QuestionReceiverDetailDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "categoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "categoryName": {
+          "type": "string"
+        },
+        "createDatePersian": {
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "senderName": {
+          "type": "string"
+        }
+      }
+    },
+    "QuestionReceiverSeenModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ProblemDetails": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "instance": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "QuestionAnswerInsertModel": {
+      "description": "This object can be used to insert and update QuestionAnswer",
+      "required": [
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "questionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "text": {
+          "maxLength": 500,
+          "minLength": 1,
+          "type": "string"
+        },
+        "displayWhoIsAnswer": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ChangeCurrentUserPasswordModel": {
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "IdpCreateUserAccountModel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "roles": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

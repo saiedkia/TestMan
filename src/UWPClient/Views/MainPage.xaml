@@ -1,0 +1,202 @@
+﻿<Page
+    x:Class="UWPClient.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:UWPClient.Converters"
+    mc:Ignorable="d"
+    xmlns:prism="using:Prism.Windows.Mvvm"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    x:Name="window">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <converters:VisibilityConverter x:Key="VisibilityConverter" />
+            <converters:ResponseConverter x:Key="ResponseConverter" />
+            <converters:TestResultConverter x:Key="TestResultConverter" />
+            <converters:NotConverter x:Key="NotConverter" />
+            <converters:HttpMethodConverter x:Key="HttpMethodConverter" />
+            <converters:IntentConverter x:Key="IntentConverter" />
+
+            <ResourceDictionary.MergedDictionaries >
+                <ResourceDictionary Source="../Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+
+    <Page.TopAppBar>
+        <CommandBar AllowDrop="False" >
+            <CommandBar.Content>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Padding="5" Spacing="5">
+                    <ComboBox ItemsSource="{Binding Workspace.Workspaces}" SelectedIndex="{Binding WorkspaceSelectedIndex, Mode=TwoWay}" MinWidth="250" />
+                    <Button Command="{Binding RunCommand}" CommandParameter="{Binding ElementName=requestsLsv, Path=SelectedItems}" >
+                        <FontIcon Glyph="&#xE768;" />
+                    </Button>
+                </StackPanel>
+            </CommandBar.Content>
+
+            <!--<AppBarButton Content="Load" Command="{Binding LoadCommand}" Icon="Upload"/>-->
+            <AppBarButton Content="Save" Command="{Binding SaveCommand}" Icon="Save"/>
+            <AppBarButton Content="Save" Command="{Binding DeleteCommand}" Icon="Delete"/>
+            <AppBarButton Content="Settings" Command="{Binding SettingCommand}" Icon="Setting" />
+
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="70*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <!--Apis-->
+        <ListView Grid.Row="0" Grid.RowSpan="2"  x:Name="apiLV" Background="{ThemeResource  ApiAcrylicBrush}" ItemsSource="{Binding ApiCollections.View, Mode=OneWay}" SelectedIndex="{Binding SelectedApiIndex, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Key}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80*" />
+                            <ColumnDefinition Width="20*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Api.Name}" />
+
+                        <Rectangle Grid.Column="1" Fill="{Binding Api.RequestType, Converter={StaticResource HttpMethodConverter}}" HorizontalAlignment="Stretch" RadiusX="5" RadiusY="5" />
+                        <TextBlock Grid.Column="1" Text="{Binding Api.RequestType}" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Requests-->
+        <ListView x:Name="requestsLsv" Grid.Column="1" Grid.RowSpan="2" CanReorderItems="True" AllowDrop="True"  SelectionMode="Extended" IsItemClickEnabled="True" DoubleTapped="RequestsLsv_DoubleTapped" ItemsSource="{Binding Requests, Mode=OneWay}" Background="{ThemeResource RequestAcrylicBrush}" SelectedIndex="{Binding SelectedRequestIndex, Mode=TwoWay}" HorizontalContentAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0" Height="40" MinHeight="40" MaxHeight="40">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition  Width="2"/>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Grid.Column="0" Margin="0,5" Fill="{Binding IsPassed, Converter={StaticResource TestResultConverter}}" />
+
+                        <TextBlock Margin="5,0" Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center"/>
+                        <ProgressRing Margin="1,5" Grid.Column="2" IsActive="{Binding IsRunning}" HorizontalAlignment="Center" />
+                        <Button Grid.Column="2" Margin="5" Visibility="{Binding IsRunning, Converter={StaticResource NotConverter}}" Background="Transparent" Command="{Binding ElementName=window, Path=DataContext.DeleteRequestCommand, Mode=OneWay}" CommandParameter="{Binding}" HorizontalAlignment="Center" >
+                            <FontIcon Glyph="&#xE74D;" FontSize="15" />
+                        </Button>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <Grid Grid.Column="2" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+
+            <!--raw edit toggle button-->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10">
+                <ToggleSwitch  IsOn="{Binding ElementName=window, Path=DataContext.RequestEditMode, Mode=TwoWay}" OnContent="Raw" OffContent="Form" />
+            </StackPanel>
+            
+            <!--Parameters list-->
+            <ScrollViewer Grid.Row="1">
+                <StackPanel Margin="0, 10, 10, 10">
+                    <ListView x:Name="parametersLv" Grid.Row="1" ScrollViewer.VerticalScrollMode="Disabled" ItemsSource="{Binding SelectedParameters, Mode=OneWay}" HorizontalContentAlignment="Stretch" SelectionMode="None" VerticalAlignment="Top">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Visibility="{Binding }" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Margin="{Binding Intent, Converter={StaticResource IntentConverter}}" Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Parameter.Type}" FontSize="10" />
+                                <TextBlock Foreground="Red" Text="*" Visibility="{Binding Parameter.Required, Converter={StaticResource VisibilityConverter}}" />
+                            </StackPanel>
+                            <TextBox Grid.Column="1" Text="{Binding Value, Mode=TwoWay}" Visibility="{Binding Parameter.Type, Converter={StaticResource VisibilityConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+                    <TextBox Margin="10" MinHeight="200" VerticalAlignment="Stretch" Visibility="{Binding RequestEditMode}"  Text="{Binding RawValue, Mode=TwoWay}" HorizontalAlignment="Stretch" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" />
+                </StackPanel>
+            </ScrollViewer>
+            <!--bottom content-->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="10" Spacing="10" Grid.Row="0" Orientation="Horizontal">
+                    <ComboBox  ItemsSource="{Binding ResponseExpectedStatusCodes}" SelectedIndex="{Binding ResponseExpectedStatusCodeIndex, Mode=TwoWay}" />
+                    <TextBlock Text="{Binding Response.StatusCode}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <ScrollViewer Padding="5" HorizontalScrollBarVisibility="Hidden" HorizontalScrollMode="Enabled" Grid.Row="1"  HorizontalAlignment="Center">
+                    <TextBlock IsTextSelectionEnabled="True" Width="900" ScrollViewer.HorizontalScrollMode="Enabled" Text="{Binding Response, Converter={StaticResource ResponseConverter}}" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </ScrollViewer>
+
+                <StackPanel Margin="10,0" Grid.Row="2" Height="50" Width="50" HorizontalAlignment="Left">
+                    <!--Export report-->
+                    <Button Grid.Row="2" BorderBrush="Transparent" FocusVisualSecondaryBrush="Transparent" HorizontalAlignment="Left" Margin="5" Command="{Binding ReportCommand}" >
+                        <FontIcon Glyph="&#xF584;" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="10" Grid.Row="2" Orientation="Horizontal" Height="50" Spacing="10" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button Content="Add" Command="{Binding AddCommand}"  HorizontalAlignment="Right"/>
+                    <Button  Content="Send" Command="{Binding SubmitCommand}" HorizontalAlignment="Right" />
+
+                </StackPanel>
+
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>
